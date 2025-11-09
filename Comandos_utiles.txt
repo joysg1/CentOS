@@ -1,5 +1,7 @@
 ++ CentOS 7
 --- ISO URL: https://img.cs.montana.edu/linux/centos/7/isos/x86_64/
+--- ip a (Permite conocer los adaptadores de red y las ips asociadas)
+--- ifconfig (Permite conocer los adaptadores de red y las ips asociadas)
 
 
 ++ CentOS 8
