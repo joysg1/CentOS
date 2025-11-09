@@ -1,7 +1,10 @@
 ++ CentOS 7
+--- ISO URL: https://img.cs.montana.edu/linux/centos/7/isos/x86_64/
 
 
 ++ CentOS 8
+--- ISO URL: http://mirror.stanford.edu/centos/centos/8/isos/x86_64/
 
 
 ++ CentOS 9
+--- ISO URL: https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/iso/
