@@ -2,6 +2,7 @@
 --- ISO URL: https://img.cs.montana.edu/linux/centos/7/isos/x86_64/
 --- ip a (Permite conocer los adaptadores de red y las ips asociadas)
 --- ifconfig (Permite conocer los adaptadores de red y las ips asociadas)
+--- ifup <nombre_adaptador> (Permite poner en marcha un adaptador de red)
 
 
 ++ CentOS 8
