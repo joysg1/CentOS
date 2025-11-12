@@ -4,6 +4,7 @@
 --- ifconfig (Permite conocer los adaptadores de red y las ips asociadas)
 --- ifup <nombre_adaptador> (Permite poner en marcha un adaptador de red)
 --- yum install <nombre_paquete> (Permite instalar un programa usando repositorios remotos)
+---- yum remove <nombre_paquete> (Permite remover un paquete)
 --- rpm -qa (Permite realizar una consulta sobre todos los paquetes instalados en el sistema)
 ---- rpm -qa | wc -l (Permite mostrar el número total de paquetes instalados en el sistema)
 ---- rpm -qa | grep <nombre_paquete> (Permite realizar una búsqueda de un paquete en específico dentro de todos los paquetes instalados)
