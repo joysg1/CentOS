@@ -42,3 +42,7 @@
 
 ++ Copiado seguro de archivos entre un servidor y otro equipo en la red
 --- scp <nombre_archivo> <hostname_equipo_destino:/<ruta>>
+
+++ Realizar backups con rsync (rsync solo transfiere las diferencias entre directorios)
+--- rsync -avh --progress /home/usuario/ /backup/home/ (Backup local)
+--- rsync -avzhe ssh --progress /datos/ usuario@192.168.1.100:/backup/datos/ (Backup a Servidor)
