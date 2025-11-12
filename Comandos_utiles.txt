@@ -3,6 +3,7 @@
 --- ip a (Permite conocer los adaptadores de red y las ips asociadas)
 --- ifconfig (Permite conocer los adaptadores de red y las ips asociadas)
 --- ifup <nombre_adaptador> (Permite poner en marcha un adaptador de red)
+--- yum install <nombre_paquete> (Permite instalar un programa usando repositorios remotos)
 
 
 ++ CentOS 8
