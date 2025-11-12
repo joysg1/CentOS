@@ -46,3 +46,6 @@
 ++ Realizar backups con rsync (rsync solo transfiere las diferencias entre directorios)
 --- rsync -avh --progress /home/usuario/ /backup/home/ (Backup local)
 --- rsync -avzhe ssh --progress /datos/ usuario@192.168.1.100:/backup/datos/ (Backup a Servidor)
+
+++ Mensaje de bienvenida
+--- Editar archivo /etc/motd
