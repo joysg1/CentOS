@@ -28,3 +28,14 @@
 ---- No se pueden realizar mediante yum, requieren reinstalación de todo
 --- Minoritarias: 7.3 ---> 7.4
 ---- Sí se pueden realizar mediante yum
+
+++ System run levels
+--- who -r (Permite mostar en que modo nos encontramos)
+--- Main run level
+----- init 0 (Apaga el equipo)
+----- init 1 (Modo un sólo usuario)
+----- init 6 (Reinicia el equipo)
+--- Other run levels
+----- init 2 (Modo multiusuario sin red)
+----- init 3 (Modo multiusuario con red)
+----- init 5 (Modo multiusuario con red)
