@@ -8,6 +8,7 @@
 ---- rpm -qa | wc -l (Permite mostrar el número total de paquetes instalados en el sistema)
 ---- rpm -qa | grep <nombre_paquete> (Permite realizar una búsqueda de un paquete en específico dentro de todos los paquetes instalados)
 ---- rpm -ihv <ruta_o_nombre_del_paquete> (Permite instalar un paquete)
+---- rpm -e <nombre_paquete> (Permite remover un paquete)
 
 
 ++ CentOS 8
