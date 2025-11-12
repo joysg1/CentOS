@@ -6,7 +6,7 @@
 --- yum install <nombre_paquete> (Permite instalar un programa usando repositorios remotos)
 ---- yum search <nombre_paquete> (Permite buscar un paquete)
 ---- yum remove <nombre_paquete> (Permite remover un paquete)
----- yum update (Permite actualizar los paquetes)
+---- yum update -y (Permite actualizar los paquetes)
 --- rpm -qa (Permite realizar una consulta sobre todos los paquetes instalados en el sistema)
 ---- rpm -qa | wc -l (Permite mostrar el número total de paquetes instalados en el sistema)
 ---- rpm -qa | grep <nombre_paquete> (Permite realizar una búsqueda de un paquete en específico dentro de todos los paquetes instalados)
