@@ -5,6 +5,7 @@
 --- ifup <nombre_adaptador> (Permite poner en marcha un adaptador de red)
 --- yum install <nombre_paquete> (Permite instalar un programa usando repositorios remotos)
 --- rpm -qa (Permite realizar una consulta sobre todos los paquetes instalados en el sistema)
+---- rpm -qa | wc -l (Permite mostrar el número total de paquetes instalados en el sistema)
 
 
 ++ CentOS 8
