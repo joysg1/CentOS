@@ -37,5 +37,5 @@
 ----- init 6 (Reinicia el equipo)
 --- Other run levels
 ----- init 2 (Modo multiusuario sin red)
------ init 3 (Modo multiusuario con red)
------ init 5 (Modo multiusuario con red)
+----- init 3 (Modo multiusuario sin gui y con red)
+----- init 5 (Modo multiusuario con gui y con red)
