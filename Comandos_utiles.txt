@@ -58,3 +58,13 @@
 ---- Otros: Sin ningún permiso
 ---- Nota: esta asignación se perderá al cerrar sesión o reiniciar el equipo.
 ---- Nota: para hacer permanente está asignación debemos editar el archivo .bashrc, al final de este podemos agregar el comando umask correspondiente
+
+++ Colores en el sistema de archivos
+--- Azul = Directorio
+--- Verde = Ejecutable 
+--- Celeste = Enlace simbólico
+--- Amarrillo con fondo negro = dispositivo
+--- Rosado = imagen
+--- Rojo = archivo tar
+--- Rojo con fondo negro = Enlace simbólico roto
+--- 
