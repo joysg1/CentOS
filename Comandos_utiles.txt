@@ -79,3 +79,4 @@
 ---- Nota: para que el comando funcione la unidad de almacenamiento o partición NO debe estar montada)
 ---- Ejemplo de uso: fsck -y /dev/sda1 
 ---- Ejemplo de uso (particion xfs): fsck.xfs /dev/sda1
+------ Luego ejecutar: xfs_repair /dev/sda1
