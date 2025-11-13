@@ -50,3 +50,9 @@
 
 ++ Mensaje de bienvenida
 --- Editar archivo /etc/motd
+
+++ Cambiar permisos al crear archivos nuevos
+--- umask u+rw,g+r,g-w,o-rwx 
+---- Usuario actual: Permisos de lectura y escirtura
+---- Grupo: Permisos de lectura
+---- Otros: Sin ningún permiso
