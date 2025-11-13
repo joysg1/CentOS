@@ -67,4 +67,5 @@
 --- Rosado = imagen
 --- Rojo = archivo tar
 --- Rojo con fondo negro = Enlace simbólico roto
---- 
+---- Nota: estos colores pueden cambiarse si se desea.
+---- Nota: no todas las distribuciones tienen este mismo esquema de colores
