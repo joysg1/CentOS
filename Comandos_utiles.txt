@@ -69,3 +69,9 @@
 --- Rojo con fondo negro = Enlace simbólico roto
 ---- Nota: estos colores pueden cambiarse si se desea.
 ---- Nota: no todas las distribuciones tienen este mismo esquema de colores
+
+++ Troubleshooting storage devices
+--- df -h (Muestra las unidades de almacenamiento en formato legible para humanos)
+--- df -T (Muestra los formatos asociados a las unidades de almacenamiento)
+--- df -h | grep -v tmpfs (Muestra las unidades de almacenamiento y excluye aquellas con etiquetas de temporal, las cuales en realidad no son unidades de almacenamiento)
+--- 
