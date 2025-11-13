@@ -70,8 +70,10 @@
 ---- Nota: estos colores pueden cambiarse si se desea.
 ---- Nota: no todas las distribuciones tienen este mismo esquema de colores
 
-++ Troubleshooting storage devices
+++ Comandos útiles para unidades de almacenamiento
 --- df -h (Muestra las unidades de almacenamiento en formato legible para humanos)
 --- df -T (Muestra los formatos asociados a las unidades de almacenamiento)
 --- df -h | grep -v tmpfs (Muestra las unidades de almacenamiento y excluye aquellas con etiquetas de temporal, las cuales en realidad no son unidades de almacenamiento)
---- 
+--- fdisk -l (Permite ver las unidades de almacenamiento y particiones)
+--- fsck /dev/<nombre_almacenamiento> (Corrige a nivel de bloque los errores en la unidad de almacenamiento o partición)
+---- Nota: para que el comando funcione la unidad de almacenamiento o partición debe estar montada)
