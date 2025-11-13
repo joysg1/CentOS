@@ -56,3 +56,5 @@
 ---- Usuario actual: Permisos de lectura y escirtura
 ---- Grupo: Permisos de lectura
 ---- Otros: Sin ningún permiso
+---- Nota: esta asignación se perderá al cerrar sesión o reiniciar el equipo.
+---- Nota: para hacer permanente está asignación debemos editar el archivo .bashrc, al final de este podemos agregar el comando umask correspondiente
