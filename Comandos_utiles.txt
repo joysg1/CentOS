@@ -76,4 +76,4 @@
 --- df -h | grep -v tmpfs (Muestra las unidades de almacenamiento y excluye aquellas con etiquetas de temporal, las cuales en realidad no son unidades de almacenamiento)
 --- fdisk -l (Permite ver las unidades de almacenamiento y particiones)
 --- fsck /dev/<nombre_almacenamiento> (Corrige a nivel de bloque los errores en la unidad de almacenamiento o partición)
----- Nota: para que el comando funcione la unidad de almacenamiento o partición debe estar montada)
+---- Nota: para que el comando funcione la unidad de almacenamiento o partición NO debe estar montada)
