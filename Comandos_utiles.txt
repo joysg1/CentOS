@@ -8,6 +8,7 @@
 ---- yum search <nombre_paquete> (Permite buscar un paquete)
 ---- yum remove <nombre_paquete> (Permite remover un paquete)
 ---- yum update -y (Permite actualizar los paquetes sin eliminar los antiguos)
+---- yum update kernel* (Permite actualizar el kernel)
 ---- yum upgrade -y (Permite actualizar los paquetes eliminando los antiguos)
 --- rpm -qa (Permite realizar una consulta sobre todos los paquetes instalados en el sistema)
 ---- rpm -qa | wc -l (Permite mostrar el número total de paquetes instalados en el sistema)
