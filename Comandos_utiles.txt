@@ -78,3 +78,4 @@
 --- fsck /dev/<nombre_almacenamiento> (Corrige a nivel de bloque los errores en la unidad de almacenamiento o partición)
 ---- Nota: para que el comando funcione la unidad de almacenamiento o partición NO debe estar montada)
 ---- Ejemplo de uso: fsck -y /dev/sda1 
+---- Ejemplo de uso (particion xfs): fsck.xfs /dev/sda1
