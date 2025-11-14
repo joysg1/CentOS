@@ -81,10 +81,6 @@
 ---- Ejemplo de uso (particion xfs): fsck.xfs /dev/sda1
 ------ Luego ejecutar: xfs_repair /dev/sda1
 
-++ Instalar iftop
---- yum install epel-release
---- yum install iftop
-
 ++ Verificar en que sistema estamos
 --- hostname
 
@@ -120,6 +116,10 @@ memoria
 ---  lsof -i -P -n | grep 22 (Permite ver la información asociada al puerto 22)
 --- netstat -plnt (Permite ver los puertos abiertos y que están escuchando. Nota: este comando ya está en desuso)
 --- ss -plnt (Permite ver los puertos abiertos y que están escuchando. Nota: este comando es la versión mas aceptada) 
+--- iftop (Permite ver el tŕafico de red)
+---- Comandos para instalar iftop:
+----- yum install epel-release
+----- yum install iftop
 
 
 
