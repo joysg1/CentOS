@@ -88,4 +88,7 @@
 ++ Verificar en que sistema estamos
 --- hostname
 
+++ Verificar el tamaño de cada archivo en un sistema de archivos
+y ordenar los archivos de mayor a menor
+--- du -ah <sistema_de_archivos> | sort -nr | more
 
