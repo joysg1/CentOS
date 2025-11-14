@@ -132,7 +132,7 @@ memoria
 --- cat messages | grep warning (Muestra todas las coincidencias de la cadena warning dentro del archivo de log messages)
 --- cat messages | grep failed (Muestra todas las coincidencias de la cadena failed dentro del archivo de log messages)
 
-++ Verificar que el gateway se encuentre asignado
+++ Verificar el ip routing-table (muestra la ip, gateway, máscara)
 --- netstat -rnv
 
 ++ Verificar el estado del adpatador de red
