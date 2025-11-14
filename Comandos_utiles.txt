@@ -146,11 +146,14 @@ memoria
 --- ifdown <interfaz_de_red>
 
 ++ Resetear la red
---- systemctl restart network
+--- systemctl restart network.service
 
 ++ Detener el firewall
 --- systemctl stop firewall
 --- service iptable stop
+
+++ Verificar aspectos de conectividad ssh
+--- 
 
 
 
