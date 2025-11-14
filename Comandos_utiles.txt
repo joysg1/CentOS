@@ -113,4 +113,8 @@ memoria
 ++ Verificar las estadísticas de los dispositivos de almacenamiento cada 5 segundos
 --- iostat -y 5
 
+++ Verificar aspectos de la red
+--- ifconfig
+--- tcpdump -i <interfaz_de_red> | grep <ip_a_indentificar> (Permite ver el tráfico asociado sobre un adaptador de red e ip en específico)
+
 
