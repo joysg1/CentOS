@@ -118,6 +118,7 @@ memoria
 --- tcpdump -i <interfaz_de_red> | grep <ip_a_indentificar> (Permite ver el tráfico asociado sobre un adaptador de red e ip en específico)
 --- lsof -i -P -n (Permite ver los puertos abiertos y que están escuchando asociados al equipo)
 ---  lsof -i -P -n | grep 22 (Permite ver la información asociada al puerto 22)
+--- netstat -plnt (Permite ver los puertos abiertos y que están escuchando)
 
 
 
