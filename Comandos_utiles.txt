@@ -144,6 +144,9 @@ memoria
 --- ifup <interfaz_de_red>
 --- ifdown <interfaz_de_red>
 
+++ Resetear la red
+--- systemctl restart network
+
 
 
 
