@@ -136,7 +136,8 @@ memoria
 --- netstat -rnv
 
 ++ Verificar el estado del adpatador de red
---- ethtool
+--- ifconfig
+--- ethtool <interfaz_red>
 --- mii-tool
 
 ++ Resetear una interfaz de red
@@ -146,6 +147,8 @@ memoria
 
 ++ Resetear la red
 --- systemctl restart network
+
+
 
 
 
