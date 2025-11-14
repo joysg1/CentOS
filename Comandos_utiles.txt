@@ -110,3 +110,7 @@ memoria
 --- lscpu
 --- cat /proc/cpuinfo 
 
+++ Verificar las estadísticas de los dispositivos de almacenamiento cada 5 segundos
+--- iostat -y 5
+
+
