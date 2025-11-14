@@ -135,6 +135,15 @@ memoria
 ++ Verificar que el gateway se encuentre asignado
 --- netstat -rnv
 
+++ Verificar el estado del adpatador de red
+--- ethtool
+--- mii-tool
+
+++ Resetear una interfaz de red
+--- ifconfig 
+--- ifup <interfaz_de_red>
+--- ifdown <interfaz_de_red>
+
 
 
 
