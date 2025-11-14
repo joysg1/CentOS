@@ -101,3 +101,8 @@ y ordenar los archivos de mayor a menor
 ++ Verificar el uso de la swap
 --- vmstat (Permite ver cuanta swap a sido asignada y cuanta queda libre)
 
+++ Verificar la información asociada a un proceso en concreto en función de la 
+memoria
+--- pmap <process_id>
+---- Ubicar el process id con el comando: top
+
