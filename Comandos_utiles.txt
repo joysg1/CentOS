@@ -153,7 +153,10 @@ memoria
 --- service iptable stop
 
 ++ Verificar aspectos de conectividad ssh
---- 
+--- ps -ef | grep ssh (Permite conocer si el demonio ssh está corriendo)
+---- Una salida de este tipo indica que el demonio si está corriendo 
+(al final): /sshd -D 
+--- systemctl restart sshd (Permite reiniciar el servicio de ssh)
 
 
 
