@@ -92,3 +92,9 @@
 y ordenar los archivos de mayor a menor
 --- du -ah <sistema_de_archivos> | sort -nr | more
 
+++ Verificar procesos
+--- top
+--- free -m (Muestra la cantidad de memoria RAM usada y libre en megabytes)
+--- lsmen (Muestra la cantidad de memoria RAM disponible)
+--- cat /proc/meminfo (Muestra como la memoria RAM está vinculada a cada proceso)
+
