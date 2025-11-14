@@ -94,7 +94,7 @@ y ordenar los archivos de mayor a menor
 
 ++ Verificar procesos y su vinculación con la memoria RAM
 --- top
---- free -m (Muestra la cantidad de memoria RAM usada y libre en megabytes)
+--- free -m (Muestra la cantidad de memoria RAM usada y libre en megabytes, realiza lo equivalente con la swap)
 --- lsmen (Muestra la cantidad de memoria RAM disponible)
 --- cat /proc/meminfo (Muestra como la memoria RAM está vinculada a cada proceso)
 
