@@ -106,3 +106,7 @@ memoria
 --- pmap <process_id>
 ---- Ubicar el process id con el comando: top
 
+++ Verificar información sobre el cpu del equipo
+--- lscpu
+--- cat /proc/cpuinfo 
+
