@@ -148,6 +148,12 @@ memoria
 ++ Resetear la red
 --- systemctl restart network
 
+++ Detener el firewall
+--- systemctl stop firewall
+--- service iptable stop
+
+
+
 
 
 
