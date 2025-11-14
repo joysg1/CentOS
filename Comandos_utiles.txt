@@ -80,3 +80,7 @@
 ---- Ejemplo de uso: fsck -y /dev/sda1 
 ---- Ejemplo de uso (particion xfs): fsck.xfs /dev/sda1
 ------ Luego ejecutar: xfs_repair /dev/sda1
+
+++ Instalar iftop
+--- yum install epel-release
+--- yum install iftop
