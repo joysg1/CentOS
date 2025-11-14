@@ -138,7 +138,7 @@ memoria
 ++ Verificar el estado del adpatador de red
 --- ifconfig
 --- ethtool <interfaz_red>
---- mii-tool <interfaz_red>
+--- sudo mii-tool <interfaz_red>
 
 ++ Resetear una interfaz de red
 --- ifconfig 
