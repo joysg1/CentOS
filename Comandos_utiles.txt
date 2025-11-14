@@ -121,6 +121,9 @@ memoria
 ----- yum install epel-release
 ----- yum install iftop
 
+++ Verificar el tiempo de encendido del equipo 
+--- uptime
+
 
 
 
