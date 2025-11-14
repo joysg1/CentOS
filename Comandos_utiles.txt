@@ -124,6 +124,12 @@ memoria
 ++ Verificar el tiempo de encendido del equipo 
 --- uptime
 
+++ Verificiar los logs del equipo
+--- cd /var/log
+---- lts -ltr
+---- tail -100 messages | grep error (Muestra las útlimas 100 líneas del archivo de log messages en donde aparezca la cadena error)
+--- cat messages | grep error (Muestra todas las coincidencias de la cadena error dentro del archivo de log messages
+
 
 
 
