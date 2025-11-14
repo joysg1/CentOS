@@ -84,3 +84,8 @@
 ++ Instalar iftop
 --- yum install epel-release
 --- yum install iftop
+
+++ Verificar en que sistema estamos
+--- hostname
+
+
