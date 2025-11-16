@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apuntes de Comandos CentOS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a5276, #2e86c1, #3498db);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Estilos del buscador */
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #3498db;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-box:focus {
+            border-color: #e74c3c;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.2);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+        
+        .search-results {
+            margin-top: 10px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .section-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .section-header {
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        
+        .section-header h2 {
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-header h2::before {
+            content: "🐧";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        .download-link {
+            display: block;
+            margin-bottom: 15px;
+            padding: 12px 15px;
+            background-color: #2ecc71;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .download-link:hover {
+            background-color: #27ae60;
+        }
+        
+        .command-list {
+            list-style-type: none;
+        }
+        
+        .command-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .command-item:last-child {
+            border-bottom: none;
+        }
+        
+        .command-item::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-size: 0.9rem;
+        }
+        
+        .command {
+            font-family: 'Courier New', monospace;
+            background-color: #f8f9fa;
+            padding: 3px 6px;
+            border-radius: 3px;
+            color: #c7254e;
+            font-weight: bold;
+        }
+        
+        .description {
+            margin-top: 5px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        .note {
+            background-color: #fffde7;
+            border-left: 4px solid #ffd600;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+            font-size: 0.9rem;
+        }
+        
+        .warning {
+            background-color: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+            font-size: 0.9rem;
+        }
+        
+        .example {
+            background-color: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+            font-size: 0.9rem;
+        }
+        
+        .sub-item {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .color-scheme {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .color-item {
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .blue { background-color: #d6eaf8; color: #1b4f72; }
+        .green { background-color: #d5f5e3; color: #186a3b; }
+        .light-blue { background-color: #e8f6f3; color: #0e6251; }
+        .yellow { background-color: #fcf3cf; color: #7d6608; }
+        .pink { background-color: #fadbd8; color: #78281f; }
+        .red { background-color: #f2d7d5; color: #943126; }
+        .red-black { background-color: #2c3e50; color: #ec7063; }
+        
+        .highlight {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 3px;
+            padding: 2px 4px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: white;
+            font-size: 0.9rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Apuntes de Comandos CentOS</h1>
+            <p class="subtitle">Guía completa de comandos y configuraciones para administradores de sistemas</p>
+            
+            <!-- Buscador -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-box" placeholder="Buscar comandos, descripciones, configuraciones...">
+                <div class="search-icon">🔍</div>
+                <div class="search-results" id="searchResults">Escribe para buscar comandos</div>
+            </div>
+        </header>
+        
+        <div class="no-results" id="noResults">
+            <h3>No se encontraron resultados</h3>
+            <p>Intenta con otros términos de búsqueda</p>
+        </div>
+        
+        <main class="content-grid" id="contentGrid">
+            <!-- CentOS 7 -->
+            <div class="section-card" data-category="centos7 instalacion red">
+                <div class="section-header">
+                    <h2>CentOS 7</h2>
+                </div>
+                <div class="section-content">
+                    <a href="https://img.cs.montana.edu/linux/centos/7/isos/x86_64/" class="download-link" target="_blank">Descargar ISO CentOS 7</a>
+                    
+                    <ul class="command-list">
+                        <li class="command-item" data-search="cat etc redhat release version centos">
+                            <span class="command">cat /etc/redhat-release</span>
+                            <div class="description">Permite conocer la versión de CentOS</div>
+                        </li>
+                        <li class="command-item" data-search="ip a adaptadores red ips">
+                            <span class="command">ip a</span>
+                            <div class="description">Permite conocer los adaptadores de red y las IPs asociadas</div>
+                        </li>
+                        <li class="command-item" data-search="ifconfig adaptadores red ips">
+                            <span class="command">ifconfig</span>
+                            <div class="description">Permite conocer los adaptadores de red y las IPs asociadas</div>
+                        </li>
+                        <li class="command-item" data-search="ifup nombre adaptador red">
+                            <span class="command">ifup &lt;nombre_adaptador&gt;</span>
+                            <div class="description">Permite poner en marcha un adaptador de red</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Gestión de Paquetes YUM -->
+            <div class="section-card" data-category="paquetes yum instalacion actualizacion">
+                <div class="section-header">
+                    <h2>Gestión de Paquetes YUM</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="yum install nombre paquete programa repositorios">
+                            <span class="command">yum install &lt;nombre_paquete&gt;</span>
+                            <div class="description">Permite instalar un programa usando repositorios remotos</div>
+                        </li>
+                        <li class="command-item" data-search="yum search buscar paquete">
+                            <span class="command">yum search &lt;nombre_paquete&gt;</span>
+                            <div class="description">Permite buscar un paquete</div>
+                        </li>
+                        <li class="command-item" data-search="yum remove remover eliminar paquete">
+                            <span class="command">yum remove &lt;nombre_paquete&gt;</span>
+                            <div class="description">Permite remover un paquete</div>
+                        </li>
+                        <li class="command-item" data-search="yum update actualizar paquetes">
+                            <span class="command">yum update -y</span>
+                            <div class="description">Permite actualizar los paquetes sin eliminar los antiguos</div>
+                        </li>
+                        <li class="command-item" data-search="yum update kernel">
+                            <span class="command">yum update kernel*</span>
+                            <div class="description">Permite actualizar el kernel</div>
+                        </li>
+                        <li class="command-item" data-search="yum upgrade actualizar eliminar paquetes">
+                            <span class="command">yum upgrade -y</span>
+                            <div class="description">Permite actualizar los paquetes eliminando los antiguos</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Gestión de Paquetes RPM -->
+            <div class="section-card" data-category="paquetes rpm consulta instalacion">
+                <div class="section-header">
+                    <h2>Gestión de Paquetes RPM</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="rpm qa consulta paquetes instalados">
+                            <span class="command">rpm -qa</span>
+                            <div class="description">Permite realizar una consulta sobre todos los paquetes instalados</div>
+                        </li>
+                        <li class="command-item" data-search="rpm qa wc l numero total paquetes">
+                            <span class="command">rpm -qa | wc -l</span>
+                            <div class="description">Muestra el número total de paquetes instalados</div>
+                        </li>
+                        <li class="command-item" data-search="rpm qa grep buscar paquete especifico">
+                            <span class="command">rpm -qa | grep &lt;nombre_paquete&gt;</span>
+                            <div class="description">Busca un paquete específico entre todos los instalados</div>
+                        </li>
+                        <li class="command-item" data-search="rpm ihv instalar paquete">
+                            <span class="command">rpm -ihv &lt;ruta_o_nombre_del_paquete&gt;</span>
+                            <div class="description">Permite instalar un paquete</div>
+                        </li>
+                        <li class="command-item" data-search="rpm e remover eliminar paquete">
+                            <span class="command">rpm -e &lt;nombre_paquete&gt;</span>
+                            <div class="description">Permite remover un paquete</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- CentOS 8 y 9 -->
+            <div class="section-card" data-category="centos8 centos9 instalacion iso">
+                <div class="section-header">
+                    <h2>CentOS 8 y 9</h2>
+                </div>
+                <div class="section-content">
+                    <a href="http://mirror.stanford.edu/centos/centos/8/isos/x86_64/" class="download-link" target="_blank">Descargar ISO CentOS 8</a>
+                    <a href="https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/iso/" class="download-link" target="_blank">Descargar ISO CentOS 9</a>
+                    
+                    <div class="note" data-search="tipos actualizaciones mayoritarias minoritarias">
+                        <strong>Tipos de actualizaciones en CentOS:</strong><br>
+                        <strong>Mayoritarias:</strong> 5,6,7... No se pueden realizar mediante yum, requieren reinstalación de todo<br>
+                        <strong>Minoritarias:</strong> 7.3 → 7.4 Sí se pueden realizar mediante yum
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Run Levels -->
+            <div class="section-card" data-category="run levels init modo usuario">
+                <div class="section-header">
+                    <h2>System Run Levels</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="who r modo run level">
+                            <span class="command">who -r</span>
+                            <div class="description">Muestra en qué modo nos encontramos</div>
+                        </li>
+                    </ul>
+                    
+                    <div class="note" data-search="init 0 apagar equipo 1 usuario 6 reiniciar">
+                        <strong>Main run levels:</strong><br>
+                        <span class="command">init 0</span> - Apaga el equipo<br>
+                        <span class="command">init 1</span> - Modo un sólo usuario<br>
+                        <span class="command">init 6</span> - Reinicia el equipo
+                    </div>
+                    
+                    <div class="note" data-search="init 2 3 5 multiusuario gui red">
+                        <strong>Other run levels:</strong><br>
+                        <span class="command">init 2</span> - Modo multiusuario sin red<br>
+                        <span class="command">init 3</span> - Modo multiusuario sin GUI y con red<br>
+                        <span class="command">init 5</span> - Modo multiusuario con GUI y con red
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copiado Seguro y Backups -->
+            <div class="section-card" data-category="scp rsync backup copia segura">
+                <div class="section-header">
+                    <h2>Copiado Seguro y Backups</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="scp copia segura archivos servidores">
+                            <span class="command">scp &lt;nombre_archivo&gt; &lt;hostname_equipo_destino:/ruta&gt;</span>
+                            <div class="description">Copia segura de archivos entre servidores</div>
+                        </li>
+                    </ul>
+                    
+                    <div class="example" data-search="rsync backup diferencias local remoto">
+                        <strong>Backups con rsync (solo transfiere diferencias):</strong><br>
+                        <span class="command">rsync -avh --progress /home/usuario/ /backup/home/</span> - Backup local<br>
+                        <span class="command">rsync -avzhe ssh --progress /datos/ usuario@192.168.1.100:/backup/datos/</span> - Backup a servidor remoto
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Configuraciones del Sistema -->
+            <div class="section-card" data-category="configuracion motd umask permisos">
+                <div class="section-header">
+                    <h2>Configuraciones del Sistema</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="etc motd mensaje bienvenida">
+                            <span class="command">Editar /etc/motd</span>
+                            <div class="description">Configurar mensaje de bienvenida</div>
+                        </li>
+                        <li class="command-item" data-search="umask permisos archivos nuevos bashrc">
+                            <span class="command">umask u+rw,g+r,g-w,o-rwx</span>
+                            <div class="description">Cambiar permisos al crear archivos nuevos</div>
+                            <div class="warning">
+                                Esta asignación se pierde al cerrar sesión. Para hacerla permanente, editar el archivo .bashrc
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Colores en el Sistema de Archivos -->
+            <div class="section-card" data-category="colores sistema archivos directorio ejecutable">
+                <div class="section-header">
+                    <h2>Colores en el Sistema de Archivos</h2>
+                </div>
+                <div class="section-content">
+                    <div class="color-scheme">
+                        <div class="color-item blue" data-search="azul directorio">Azul = Directorio</div>
+                        <div class="color-item green" data-search="verde ejecutable">Verde = Ejecutable</div>
+                        <div class="color-item light-blue" data-search="celeste enlace simbolico">Celeste = Enlace simbólico</div>
+                        <div class="color-item yellow" data-search="amarillo dispositivo">Amarillo con fondo negro = Dispositivo</div>
+                        <div class="color-item pink" data-search="rosado imagen">Rosado = Imagen</div>
+                        <div class="color-item red" data-search="rojo archivo tar">Rojo = Archivo tar</div>
+                        <div class="color-item red-black" data-search="rojo fondo negro enlace roto">Rojo con fondo negro = Enlace simbólico roto</div>
+                    </div>
+                    <div class="note">
+                        Nota: Estos colores pueden cambiarse si se desea. No todas las distribuciones tienen el mismo esquema.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Unidades de Almacenamiento -->
+            <div class="section-card" data-category="almacenamiento df fdisk fsck particiones">
+                <div class="section-header">
+                    <h2>Unidades de Almacenamiento</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="df h unidades almacenamiento legible">
+                            <span class="command">df -h</span>
+                            <div class="description">Muestra unidades de almacenamiento en formato legible</div>
+                        </li>
+                        <li class="command-item" data-search="df T formatos unidades">
+                            <span class="command">df -T</span>
+                            <div class="description">Muestra los formatos de las unidades</div>
+                        </li>
+                        <li class="command-item" data-search="df h grep v tmpfs excluir temporales">
+                            <span class="command">df -h | grep -v tmpfs</span>
+                            <div class="description">Excluye sistemas de archivos temporales</div>
+                        </li>
+                        <li class="command-item" data-search="fdisk l unidades particiones">
+                            <span class="command">fdisk -l</span>
+                            <div class="description">Muestra unidades de almacenamiento y particiones</div>
+                        </li>
+                        <li class="command-item" data-search="fsck corregir errores bloque montada">
+                            <span class="command">fsck /dev/&lt;nombre_almacenamiento&gt;</span>
+                            <div class="description">Corrige errores a nivel de bloque</div>
+                            <div class="warning">La unidad NO debe estar montada</div>
+                            <div class="example">
+                                <span class="command">fsck -y /dev/sda1</span> - Ejemplo de uso<br>
+                                <span class="command">fsck.xfs /dev/sda1</span> - Para partición XFS<br>
+                                <span class="command">xfs_repair /dev/sda1</span> - Reparar partición XFS
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Verificación del Sistema -->
+            <div class="section-card" data-category="verificacion hostname du uptime">
+                <div class="section-header">
+                    <h2>Verificación del Sistema</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="hostname sistema">
+                            <span class="command">hostname</span>
+                            <div class="description">Verificar en qué sistema estamos</div>
+                        </li>
+                        <li class="command-item" data-search="du ah sort nr more tamaño archivos orden">
+                            <span class="command">du -ah &lt;sistema_de_archivos&gt; | sort -nr | more</span>
+                            <div class="description">Verificar tamaño de archivos ordenados de mayor a menor</div>
+                        </li>
+                        <li class="command-item" data-search="uptime tiempo encendido">
+                            <span class="command">uptime</span>
+                            <div class="description">Verificar el tiempo de encendido del equipo</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Memoria RAM y Procesos -->
+            <div class="section-card" data-category="memoria ram procesos top free swap">
+                <div class="section-header">
+                    <h2>Memoria RAM y Procesos</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="top procesos">
+                            <span class="command">top</span>
+                            <div class="description">Verificar procesos</div>
+                        </li>
+                        <li class="command-item" data-search="free m memoria ram swap mb">
+                            <span class="command">free -m</span>
+                            <div class="description">Muestra memoria RAM y swap en MB</div>
+                        </li>
+                        <li class="command-item" data-search="lsmem memoria disponible">
+                            <span class="command">lsmem</span>
+                            <div class="description">Muestra memoria RAM disponible</div>
+                        </li>
+                        <li class="command-item" data-search="cat proc meminfo memoria procesos">
+                            <span class="command">cat /proc/meminfo</span>
+                            <div class="description">Muestra memoria vinculada a procesos</div>
+                        </li>
+                        <li class="command-item" data-search="vmstat swap">
+                            <span class="command">vmstat</span>
+                            <div class="description">Verificar uso de swap</div>
+                        </li>
+                        <li class="command-item" data-search="pmap process id memoria proceso">
+                            <span class="command">pmap &lt;process_id&gt;</span>
+                            <div class="description">Información de memoria de un proceso</div>
+                            <div class="note">Ubicar process_id con: <span class="command">top</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- CPU y Almacenamiento -->
+            <div class="section-card" data-category="cpu lscpu iostat almacenamiento">
+                <div class="section-header">
+                    <h2>CPU y Almacenamiento</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="lscpu informacion cpu">
+                            <span class="command">lscpu</span>
+                            <div class="description">Información del CPU</div>
+                        </li>
+                        <li class="command-item" data-search="cat proc cpuinfo detallada cpu">
+                            <span class="command">cat /proc/cpuinfo</span>
+                            <div class="description">Información detallada del CPU</div>
+                        </li>
+                        <li class="command-item" data-search="iostat y 5 estadisticas almacenamiento">
+                            <span class="command">iostat -y 5</span>
+                            <div class="description">Estadísticas de almacenamiento cada 5 segundos</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Red y Conectividad -->
+            <div class="section-card" data-category="red conectividad ifconfig tcpdump puertos">
+                <div class="section-header">
+                    <h2>Red y Conectividad</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="ifconfig interfaces red">
+                            <span class="command">ifconfig</span>
+                            <div class="description">Información de interfaces de red</div>
+                        </li>
+                        <li class="command-item" data-search="tcpdump i interfaz grep ip trafico">
+                            <span class="command">tcpdump -i &lt;interfaz&gt; | grep &lt;ip&gt;</span>
+                            <div class="description">Ver tráfico de red específico</div>
+                        </li>
+                        <li class="command-item" data-search="lsof i P n puertos abiertos escucha">
+                            <span class="command">lsof -i -P -n</span>
+                            <div class="description">Ver puertos abiertos y en escucha</div>
+                        </li>
+                        <li class="command-item" data-search="ss plnt puertos abiertos moderno">
+                            <span class="command">ss -plnt</span>
+                            <div class="description">Ver puertos abiertos (comando moderno)</div>
+                        </li>
+                        <li class="command-item" data-search="iftop trafico red instalar epel">
+                            <span class="command">iftop</span>
+                            <div class="description">Ver tráfico de red</div>
+                            <div class="note">
+                                Instalación: <br>
+                                <span class="command">yum install epel-release</span><br>
+                                <span class="command">yum install iftop</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Logs del Sistema -->
+            <div class="section-card" data-category="logs var log messages error warning">
+                <div class="section-header">
+                    <h2>Logs del Sistema</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="cd var log directorio logs">
+                            <span class="command">cd /var/log</span>
+                            <div class="description">Directorio de logs del sistema</div>
+                        </li>
+                        <li class="command-item" data-search="ls ltr logs fecha">
+                            <span class="command">ls -ltr</span>
+                            <div class="description">Listar logs ordenados por fecha</div>
+                        </li>
+                        <li class="command-item" data-search="tail 100 messages grep error ultimos errores">
+                            <span class="command">tail -100 messages | grep error</span>
+                            <div class="description">Últimos 100 errores en messages</div>
+                        </li>
+                        <li class="command-item" data-search="cat messages grep error todos errores">
+                            <span class="command">cat messages | grep error</span>
+                            <div class="description">Todos los errores en messages</div>
+                        </li>
+                        <li class="command-item" data-search="cat messages grep warning advertencias">
+                            <span class="command">cat messages | grep warning</span>
+                            <div class="description">Todas las advertencias en messages</div>
+                        </li>
+                        <li class="command-item" data-search="cat messages grep failed fallas">
+                            <span class="command">cat messages | grep failed</span>
+                            <div class="description">Todas las fallas en messages</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Configuración de Red -->
+            <div class="section-card" data-category="configuracion red ethtool mii tool ifup ifdown">
+                <div class="section-header">
+                    <h2>Configuración de Red</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="netstat rnv tabla rutas ip">
+                            <span class="command">netstat -rnv</span>
+                            <div class="description">Mostrar tabla de rutas IP</div>
+                        </li>
+                        <li class="command-item" data-search="ethtool interfaz red estado adaptador">
+                            <span class="command">ethtool &lt;interfaz_red&gt;</span>
+                            <div class="description">Estado del adaptador de red</div>
+                        </li>
+                        <li class="command-item" data-search="sudo mii tool interfaz red estado">
+                            <span class="command">sudo mii-tool &lt;interfaz_red&gt;</span>
+                            <div class="description">Estado del adaptador de red</div>
+                        </li>
+                        <li class="command-item" data-search="ifup interfaz red activar">
+                            <span class="command">ifup &lt;interfaz_de_red&gt;</span>
+                            <div class="description">Activar interfaz de red</div>
+                        </li>
+                        <li class="command-item" data-search="ifdown interfaz red desactivar">
+                            <span class="command">ifdown &lt;interfaz_de_red&gt;</span>
+                            <div class="description">Desactivar interfaz de red</div>
+                        </li>
+                        <li class="command-item" data-search="systemctl restart network service reiniciar red">
+                            <span class="command">systemctl restart network.service</span>
+                            <div class="description">Reiniciar servicio de red</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Seguridad y SSH -->
+            <div class="section-card" data-category="seguridad ssh firewall iptables demonio">
+                <div class="section-header">
+                    <h2>Seguridad y SSH</h2>
+                </div>
+                <div class="section-content">
+                    <ul class="command-list">
+                        <li class="command-item" data-search="systemctl stop firewalld detener firewall">
+                            <span class="command">systemctl stop firewalld</span>
+                            <div class="description">Detener firewall</div>
+                        </li>
+                        <li class="command-item" data-search="service iptables stop detener iptables">
+                            <span class="command">service iptables stop</span>
+                            <div class="description">Detener iptables</div>
+                        </li>
+                        <li class="command-item" data-search="ps ef grep ssh demonio ssh corriendo">
+                            <span class="command">ps -ef | grep ssh</span>
+                            <div class="description">Verificar si el demonio SSH está corriendo</div>
+                            <div class="note">Una salida con <span class="command">/sshd -D</span> indica que está activo</div>
+                        </li>
+                        <li class="command-item" data-search="systemctl restart sshd reiniciar servicio ssh">
+                            <span class="command">systemctl restart sshd</span>
+                            <div class="description">Reiniciar servicio SSH</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Guía de referencia para administradores de sistemas CentOS - Con función de búsqueda integrada</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            const noResults = document.getElementById('noResults');
+            const contentGrid = document.getElementById('contentGrid');
+            const sectionCards = document.querySelectorAll('.section-card');
+            const commandItems = document.querySelectorAll('.command-item');
+            const notes = document.querySelectorAll('.note, .warning, .example');
+            const colorItems = document.querySelectorAll('.color-item');
+            
+            // Función para realizar la búsqueda
+            function performSearch(searchTerm) {
+                searchTerm = searchTerm.toLowerCase().trim();
+                let foundCount = 0;
+                
+                // Si el término de búsqueda está vacío, mostrar todo
+                if (searchTerm === '') {
+                    sectionCards.forEach(card => card.classList.remove('hidden'));
+                    commandItems.forEach(item => {
+                        item.classList.remove('hidden');
+                        // Remover resaltado
+                        const command = item.querySelector('.command');
+                        const description = item.querySelector('.description');
+                        if (command) command.innerHTML = command.textContent;
+                        if (description) description.innerHTML = description.textContent;
+                    });
+                    notes.forEach(note => note.classList.remove('hidden'));
+                    colorItems.forEach(item => item.classList.remove('hidden'));
+                    noResults.style.display = 'none';
+                    searchResults.textContent = 'Escribe para buscar comandos';
+                    return;
+                }
+                
+                // Buscar en tarjetas de sección
+                sectionCards.forEach(card => {
+                    const category = card.getAttribute('data-category') || '';
+                    if (category.includes(searchTerm)) {
+                        card.classList.remove('hidden');
+                        foundCount++;
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+                
+                // Buscar en elementos de comando
+                commandItems.forEach(item => {
+                    const searchData = item.getAttribute('data-search') || '';
+                    const command = item.querySelector('.command');
+                    const description = item.querySelector('.description');
+                    
+                    if (searchData.includes(searchTerm) || 
+                        command.textContent.toLowerCase().includes(searchTerm) ||
+                        description.textContent.toLowerCase().includes(searchTerm)) {
+                        
+                        item.classList.remove('hidden');
+                        foundCount++;
+                        
+                        // Resaltar el término de búsqueda
+                        if (command) {
+                            command.innerHTML = highlightText(command.textContent, searchTerm);
+                        }
+                        if (description) {
+                            description.innerHTML = highlightText(description.textContent, searchTerm);
+                        }
+                        
+                        // Asegurarse de que la tarjeta padre sea visible
+                        const parentCard = item.closest('.section-card');
+                        if (parentCard) {
+                            parentCard.classList.remove('hidden');
+                        }
+                    } else {
+                        item.classList.add('hidden');
+                        // Remover resaltado si no coincide
+                        if (command) command.innerHTML = command.textContent;
+                        if (description) description.innerHTML = description.textContent;
+                    }
+                });
+                
+                // Buscar en notas, advertencias y ejemplos
+                notes.forEach(note => {
+                    const searchData = note.getAttribute('data-search') || '';
+                    if (searchData.includes(searchTerm) || 
+                        note.textContent.toLowerCase().includes(searchTerm)) {
+                        note.classList.remove('hidden');
+                        foundCount++;
+                        
+                        // Asegurarse de que la tarjeta padre sea visible
+                        const parentCard = note.closest('.section-card');
+                        if (parentCard) {
+                            parentCard.classList.remove('hidden');
+                        }
+                    } else {
+                        note.classList.add('hidden');
+                    }
+                });
+                
+                // Buscar en elementos de color
+                colorItems.forEach(item => {
+                    const searchData = item.getAttribute('data-search') || '';
+                    if (searchData.includes(searchTerm) || 
+                        item.textContent.toLowerCase().includes(searchTerm)) {
+                        item.classList.remove('hidden');
+                        foundCount++;
+                        
+                        // Asegurarse de que la tarjeta padre sea visible
+                        const parentCard = item.closest('.section-card');
+                        if (parentCard) {
+                            parentCard.classList.remove('hidden');
+                        }
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+                
+                // Mostrar resultados
+                if (foundCount > 0) {
+                    noResults.style.display = 'none';
+                    searchResults.textContent = `Se encontraron ${foundCount} resultados para "${searchTerm}"`;
+                } else {
+                    noResults.style.display = 'block';
+                    searchResults.textContent = `No se encontraron resultados para "${searchTerm}"`;
+                }
+            }
+            
+            // Función para resaltar texto
+            function highlightText(text, searchTerm) {
+                if (!searchTerm) return text;
+                
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                return text.replace(regex, '<span class="highlight">$1</span>');
+            }
+            
+            // Event listener para el campo de búsqueda
+            searchInput.addEventListener('input', function() {
+                performSearch(this.value);
+            });
+            
+            // Event listener para la tecla Escape
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    this.value = '';
+                    performSearch('');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
